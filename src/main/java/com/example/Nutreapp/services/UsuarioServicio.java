@@ -60,4 +60,13 @@ public Usuario modificar(UUID id, Usuario datos){
     }
 }
 
+public boolean eliminar(UUID id){
+    Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+    if (usuarioBuscado.isEmpty()){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id no encontrado");
+    }else{
+        this.repositorio.deleteById(id);
+        return true;
+    }
+}
 }

@@ -79,4 +79,14 @@ public Visualizacion modificar(UUID id, Visualizacion datos){
     }
 }
 
+public boolean eliminar(UUID id){
+    Optional<Visualizacion> visualizacionBuscada = this.Repositorio.findById(id);
+    if (visualizacionBuscada.isEmpty()){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id no encontrado");
+    }else{
+        this.Repositorio.deleteById(id);
+        return true;
+    }
+}
+
 }

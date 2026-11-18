@@ -74,4 +74,14 @@ public Video modificar(UUID id, Video datos){
     }
 }
 
+public boolean eliminar(UUID id){
+    Optional<Video> videoBuscado = this.Repositorio.findById(id);
+    if (videoBuscado.isEmpty()){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id no encontrado");
+    }else{
+        this.Repositorio.deleteById(id);
+        return true;
+    }
+}
+
 }
